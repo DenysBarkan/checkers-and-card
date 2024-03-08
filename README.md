@@ -9,7 +9,7 @@ The UI testing project performs some simple UI tests. It includes a Page Object 
 The API testing project includes a few API calls and checks of the responses.
 
 ## Running the Projects Locally
-To run these projects locally, you should have NodeJS (v18 and higher) and TypeScript installed.
+To run these projects locally, you should have NodeJS (v18 and higher) installed.
 
 Install the dependencies of the repository by executing the command `npm install` from the root of the repository.
 
