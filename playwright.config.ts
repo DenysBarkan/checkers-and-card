@@ -17,6 +17,12 @@ export default defineConfig({
       testDir: './src/tests/api',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'groceryStore',
+      testDir: './src/tests/api',
+      testIgnore: 'card.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
+    },
 
   ],
 });

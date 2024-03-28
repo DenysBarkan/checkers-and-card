@@ -20,3 +20,8 @@ For the UI testing project:
 
 For the API testing project:
 `npx playwright test --project=api`
+
+to run Grocery Store examples use
+`npx playwright test --project=groceryStore`
+the documentation for this flow is on root of the repo `simple-grocery-store-api.md`
+
