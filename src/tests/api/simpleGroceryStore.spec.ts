@@ -93,6 +93,7 @@ test.describe('Simple Grocery Store', () => {
             expect(createCart).toBeOK();
             expect(createCart.status()).toBe(201);
             expect(cartId).toBeTruthy();
+            console.table(cart);
             console.log(`Cart ID: ${cartId}`);
         });
 
@@ -188,7 +189,7 @@ test.describe('Simple Grocery Store', () => {
             // console.log(`Cart ID: ${cartId}`);
         });
 
-        await test.step('Add the product to the cart', async () => {
+        await test.step('Add the products to the cart', async () => {
             const addToCart1 = await request.post(`${baseUrl}/carts/${cartId}/items`, {
                 data:
                 {
@@ -208,6 +209,14 @@ test.describe('Simple Grocery Store', () => {
             });
             expect(addToCart2).toBeOK();
             expect(addToCart2.status()).toBe(201);
+        });
+
+        await test.step('Check the cart has the products', async () => {
+            const getCart = await request.get(`${baseUrl}/carts/${cartId}`);
+            const cart = await getCart.json();
+            expect(getCart).toBeOK();
+            expect(cart["items"]).toHaveLength(2);
+            console.table(cart);
         });
 
         await test.step('Create an order', async () => {
