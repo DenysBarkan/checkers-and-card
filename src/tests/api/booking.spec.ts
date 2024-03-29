@@ -5,6 +5,10 @@ test.describe('Booking API', () => {
     let rooms: any;
     let roomId: number;
     let token: any;
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - Math.floor(Math.random() * 10000));
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() * 10);
 
     test('[GET] rooms', async ({ request }) => {
         const response = await request.get(`${baseUrl}/room/`);
@@ -37,8 +41,8 @@ test.describe('Booking API', () => {
         const response = await request.post(`${baseUrl}/booking/`, {
             data: {
                 "bookingdates": {
-                    "checkin": "2019-11-01T09:48:25.469Z",
-                    "checkout": "2019-11-02T09:48:25.469Z"
+                    "checkin": startDate,
+                    "checkout": endDate
                   },
                   "depositpaid": true,
                   "firstname": "Any",
@@ -48,6 +52,8 @@ test.describe('Booking API', () => {
             }
         });
         expect(response.status()).toBe(201);
+        const booking = await response.json();
+        console.table(booking);
     });
 });
 
