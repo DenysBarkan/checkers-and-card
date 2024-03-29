@@ -2,14 +2,15 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Booking API', () => {
     const baseUrl = 'https://automationintesting.online';
-    let rooms: any;
-    let roomId: number;
-    let token: any;
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - Math.floor(Math.random() * 10000));
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() * 10);
 
+    let rooms: any;
+    let roomId: number;
+    let token: any;
+    
     test('[GET] rooms', async ({ request }) => {
         const response = await request.get(`${baseUrl}/room/`);
         rooms = await response.json();
@@ -43,12 +44,12 @@ test.describe('Booking API', () => {
                 "bookingdates": {
                     "checkin": startDate,
                     "checkout": endDate
-                  },
-                  "depositpaid": true,
-                  "firstname": "Any",
-                  "lastname": "Name",
-                  "roomid": roomId,
-                  "totalprice": 1
+                },
+                "depositpaid": true,
+                "firstname": "Any",
+                "lastname": "Name",
+                "roomid": roomId,
+                "totalprice": 1
             }
         });
         expect(response.status()).toBe(201);
